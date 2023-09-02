@@ -2,10 +2,18 @@
 
 
 
-import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
-import { SVGRenderer } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/renderers/SVGRenderer.js";
-import { OBJLoader } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/loaders/OBJLoader.js";
+// import * as THREE from "https://cdn.skypack.dev/three@0.136.0";
+// import { SVGRenderer } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/renderers/SVGRenderer.js";
+// import { OBJLoader } from "https://cdn.skypack.dev/three@0.136.0/examples/jsm/loaders/OBJLoader.js";
+// //
+
+import * as THREE from "three";
+import { SVGRenderer} from "three/addons/renderers/SVGRenderer.js";
+import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
 //
+
+
+
 
 // function loadCSS(url) {
 //   return new Promise((resolve, reject) => {
@@ -235,6 +243,27 @@ $('[class*=cursor]').on({
     }
 })
 
+
+
+$('[class*=cursor]').on({
+  mouseover: function(){
+   
+      if($(this).hasClass('cursor-transparent'))
+      {
+          cursor.addClass('cursor_no-colour');
+      }
+  },
+
+
+  mouseout: function(){
+      if($(this).hasClass('cursor-transparent'))
+      {
+          cursor.removeClass('cursor_no-colour');
+      }
+  }
+})
+
+
 /// END NEW CURSOR JS
 
 
@@ -251,18 +280,18 @@ $('[class*=cursor]').on({
 //   }
 // }
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+// gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-const scroller = document.querySelector("#smooth-content");
+// const scroller = document.querySelector("#smooth-content");
 
-const smoother = ScrollSmoother.create({
-  el: scroller,
-  smooth: 2,
-  effects: true,
-  speed: 0.85,
-  // normalizeScroll: true,
-  smoothTouch: 0.1
-});
+// const smoother = ScrollSmoother.create({
+//   el: scroller,
+//   smooth: 2,
+//   effects: true,
+//   speed: 0.85,
+//   // normalizeScroll: true,
+//   smoothTouch: 0.1
+// });
 
 
 ///// MAIN MENU CODE! ////
@@ -899,7 +928,7 @@ LottieInteractivity.create({
       scrub: true,
       pin: true,
       // onUpdate: self => console.log(self.progress, self.direction)
-      onComplete: () => ScrollTrigger.refresh()
+      // onComplete: () => ScrollTrigger.refresh()
     }
   });
 
@@ -963,7 +992,7 @@ LottieInteractivity.create({
     toggleActions:"play none none reverse",
     animation:tl2,
     markers: { startColor: "teal", endColor: "coral", indent: "600px" },
-    onComplete: () => ScrollTrigger.refresh()
+    // onComplete: () => ScrollTrigger.refresh()
   })
 
 // ScrollTrigger.refresh();
@@ -1501,8 +1530,8 @@ element2.addEventListener('click', function () {
     var lightbox = ".lightbox",
       lightboxBars = ".lightbox-bar",
       tl = gsap.timeline({
-        onComplete: () =>
-          ScrollTrigger.refresh()
+        // onComplete: () =>
+        //   // ScrollTrigger.refresh()
       });
 
     /// Animate bars back down 
@@ -1914,7 +1943,7 @@ if (document.getElementById("portfolio")) {
   });
 
 
-  ScrollTrigger.refresh(); 
+  // ScrollTrigger.refresh(); 
   
 }
 
@@ -2017,8 +2046,8 @@ function LottieScrollTrigger(vars) {
       scrollTrigger: st,
   });  
   // in case there are any other ScrollTriggers on the page and the loading of this Lottie asset caused layout changes
-ScrollTrigger.sort();
-  ScrollTrigger.refresh(); 
+// ScrollTrigger.sort();
+  // ScrollTrigger.refresh(); 
 });
 return animation;   
 
@@ -2631,7 +2660,7 @@ values();
   // tl.to({}, {duration: 500})
 
 
-ScrollTrigger.refresh();
+  tl.scrollTrigger.refresh();
   
   }
       setupAnimation();
@@ -2748,7 +2777,6 @@ tlQuoteFade2.from(logoTitleQuote4.lines, {
 // });
 
 
-ScrollTrigger.refresh()
 
 // END COLOUR CHANGE CODE ////
 
@@ -2801,7 +2829,7 @@ ScrollTrigger.refresh()
     }
   })
  
-  ScrollTrigger.refresh()
+  // ScrollTrigger.refresh()
   
      console.log("CIRCLE GROW new MASTER TL SETUP");
 
@@ -3017,8 +3045,8 @@ function LottieScrollTriggerSpokes(vars) {
       scrollTrigger: st
   });  
   // in case there are any other ScrollTriggers on the page and the loading of this Lottie asset caused layout changes
-ScrollTrigger.sort();
-  ScrollTrigger.refresh(); 
+// ScrollTrigger.sort();
+//   ScrollTrigger.refresh(); 
 });
 return animation;   
 }
@@ -3074,6 +3102,8 @@ ScrollTrigger.create({
 
 ScrollTrigger.refresh();
 console.log("STs REFRESHED!");
+
+
  
 } ///END INDEXANITANIMS FUNCTION
 

@@ -1684,21 +1684,21 @@ nav {
 
 
 
-
 /** CURSOR EFEITO **/
 
 .cursor.color .dot{
-    background-color: black;
+  background-color: black;
 } 
 
-/** ELEMENTS EFFECT **/
-/*
-[class*=cursor-]{
-    transition: all ease var(--duration);
-    -webkit-user-select: none;
-    user-select: none;
+.cursor.cursor_no-colour .dot{
+background-color: #00000036;
+width: 33%;
+height: 33%;
+transition-property: transform, height, width;
+transition-duration: 0.2s;
+transition-timing-function: ease-in-out;
+} 
 
-} */
 
 /* END CURSOR */
 
