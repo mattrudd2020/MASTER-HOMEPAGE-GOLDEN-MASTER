@@ -462,8 +462,282 @@ openMenuCtrl.addEventListener('click', openMenu);
 closeMenuCtrl.addEventListener('click', closeMenu);
 
 
-
 ///// END MAIN MENU CODE //////
+
+/* MOVED CODE FOR VALUS SECTION!!!!!!!! */
+
+
+
+
+function values() {
+  /**
+   * Class representing a content item element (.content__item)
+   */
+  class ContentItem {
+    // DOM elements
+    DOM = {
+      // main element (.content__item)
+      el: null,
+          // title (.content__item-title)
+          title: null,
+          // title inner (.content__item-title > .oh__inner)
+          titleInner: null,
+          // imgWrap (.content__item-imgwrap)
+          imgWrap : null,
+          // image (.content__item-img)
+          img : null,
+          // caption (.content__item-caption)
+          caption: null,
+    };
+    
+    /**
+     * Constructor.
+     * @param {Element} DOM_el - main element (.content__item)
+       * @param {PreviewItem} previewItemInstance - PreviewItem (.preview__item)
+     */
+    constructor(DOM_el, previewItemInstance) {
+          this.previewItem = previewItemInstance;
+      this.DOM.el = DOM_el;
+          this.DOM.title = this.DOM.el.querySelector('.content__item-title');
+          this.DOM.titleInner = this.DOM.title.querySelector('.oh__inner');
+          this.DOM.imgWrap = this.DOM.el.querySelector('.content__item-img-wrap');
+          this.DOM.img = this.DOM.imgWrap.querySelector('.content__item-img');
+          this.DOM.caption = this.DOM.el.querySelector('.content__item-caption');
+    }
+  }
+  
+  
+  /**
+   * Class representing a preview item element (.preview__item)
+   */
+  class PreviewItem {
+    // DOM elements
+    DOM = {
+      // main element (.preview__item)
+      el: null,
+          // image outer (.preview__item-img-outer)
+          imgOuter: null,
+          // imgWrap (.preview__item-img-wrap)
+          imgWrap : null,
+          // image (.content__item-img)
+          img : null,
+          // texts that slide in/out (.oh__inner)
+          slideTexts: null,
+          // description elements (.preview__item-box-desc)
+          descriptions: null,
+          // title (.preview__item-title)
+          title: null,
+          // right and left text boxes (.preview__item-box)
+          boxes: null,
+    };
+    
+    /**
+     * Constructor.
+     * @param {Element} DOM_el - main element (.preview__item)
+     */
+    constructor(DOM_el) {
+      this.DOM.el = DOM_el;
+          this.DOM.imgOuter = this.DOM.el.querySelector('.preview__item-img-outer');
+          this.DOM.imgWrap = this.DOM.el.querySelector('.preview__item-img-wrap');
+          this.DOM.img = this.DOM.el.querySelector('.preview__item-img');
+          this.DOM.slideTexts = this.DOM.el.querySelectorAll('.oh__inner');
+          this.DOM.descriptions = this.DOM.el.querySelectorAll('.preview__item-box-desc');
+          this.DOM.title = this.DOM.el.querySelector('.preview__item-title');
+          this.DOM.boxes = this.DOM.el.querySelectorAll('.preview__item-box');
+    }
+  }
+  
+  // Body 
+  const bodyEl = document.body;
+  
+  // Content overlay
+  const contentOverlayInner = document.querySelector('.content__overlay > .overlay__inner');
+  gsap.set(contentOverlayInner, {
+      xPercent: -100
+  })
+  // Preview Items
+  const previewItems = [];
+  [...document.querySelectorAll('.preview__item')].forEach(previewItem => {
+      previewItems.push(new PreviewItem(previewItem));
+  });
+  
+  // Content Items
+  const contentItems = [];
+  [...document.querySelectorAll('.content__item')].forEach((contentItem, pos) => {
+      contentItems.push(new ContentItem(contentItem, previewItems[pos]));
+  });
+  
+  // current element
+  let current = -1;
+  
+  // check if currently animating
+  let isAnimating = false;
+  
+  // Back control
+  const backCtrl = document.querySelector('.preview__back');
+  
+  // Events
+  for (const [pos, contentItem] of contentItems.entries()) {
+      
+      // click on a content item
+      contentItem.DOM.imgWrap.addEventListener('click', () => {
+          if ( isAnimating ) return;
+          isAnimating = true;
+  
+          current = pos;
+  
+          const previewItem = previewItems[pos];
+          
+          gsap.timeline({
+              defaults: {
+                  duration: 1.1,
+                  ease: 'expo',
+              },
+              onStart: () => {
+                  bodyEl.classList.add('preview-open');
+                  gsap.set(previewItem.DOM.img, {xPercent: 100});
+                  gsap.set(previewItem.DOM.imgWrap, {xPercent: -102, opacity: 0});
+  
+                  gsap.set(previewItem.DOM.slideTexts, {yPercent: 100});
+                  gsap.set(previewItem.DOM.descriptions, {yPercent: 15, opacity: 0});
+                  
+                  gsap.set(backCtrl, {x: '+=15%', opacity: 0});
+  
+                  previewItem.DOM.el.classList.add('preview__item--current');
+              },
+              onComplete: () => isAnimating = false
+          })
+          .addLabel('start', 0)
+          .addLabel('preview', 'start+=0.3')
+          .to(contentOverlayInner, {
+              ease: 'power2',
+              startAt: {xPercent: -100},
+              xPercent: 0
+          }, 'start')
+          .to([previewItem.DOM.img, previewItem.DOM.imgWrap], {
+              xPercent: 0,
+          }, 'preview')
+          .to(previewItem.DOM.imgWrap, {
+              opacity: 1,
+          }, 'preview')
+          .to(previewItem.DOM.slideTexts, {
+              yPercent: 0,
+              stagger: 0.05,
+          }, 'preview')
+          .to(previewItem.DOM.descriptions, {
+              ease: 'power2',
+              opacity: 1,
+              stagger: 0.05,
+          }, 'preview')
+          .to(previewItem.DOM.descriptions, {
+              yPercent: 0,
+              stagger: 0.05,
+          }, 'preview')
+          .to(backCtrl, {
+              ease: 'power2',
+              opacity: 1,
+              x: '-=15%'
+          }, 'preview');
+      });
+      
+      // mouseenter / mouseleave effect
+      contentItem.DOM.imgWrap.addEventListener('mouseenter', () => {
+          gsap.timeline({
+              defaults: {
+                  duration: 0.6,
+                  ease: 'expo'
+              }
+          })
+          .addLabel('start', 0)
+          .set(contentItem.DOM.titleInner, {transformOrigin: '0% 50%'}, 'start')
+          .to(contentItem.DOM.titleInner, {
+              startAt: {filter: 'blur(0px)'},
+              duration: 0.2,
+              ease: 'power1.in',
+              yPercent: -100,
+              rotation: -4,
+              filter: 'blur(6px)'
+          }, 'start')
+          .to(contentItem.DOM.titleInner, {
+              startAt: {yPercent: 100, rotation: 4, filter: 'blur(6px)'},
+              yPercent: 0,
+              rotation: 0,
+              filter: 'blur(0px)'
+          }, 'start+=0.2')
+          .to(contentItem.DOM.imgWrap, {
+              scale: 0.95
+          }, 'start')
+          .to(contentItem.DOM.img, {
+              scale: 1.2
+          }, 'start')
+      });
+  
+      contentItem.DOM.imgWrap.addEventListener('mouseleave', () => {
+          gsap.timeline({
+              defaults: {
+                  duration: 0.8,
+                  ease: 'power4'
+              }
+          })
+          .addLabel('start', 0)
+          .to([contentItem.DOM.imgWrap, contentItem.DOM.img], {
+              scale: 1,
+              //rotation: 0
+          }, 'start');
+      });
+  
+  }
+  
+  // Back to grid
+  backCtrl.addEventListener('click', () => {
+      if ( isAnimating ) return;
+      isAnimating = true;
+  
+      const previewItem = previewItems[current];
+      
+      gsap.timeline({
+          defaults: {
+              duration: 1,
+              ease: 'power4',
+          },
+          onComplete: () => {
+              previewItem.DOM.el.classList.remove('preview__item--current');
+              bodyEl.classList.remove('preview-open');
+              isAnimating = false;
+          }
+      })
+      .addLabel('start', 0)
+      .to(backCtrl, {
+          ease: 'power2',
+          opacity: 0
+      }, 'start')
+      .to(previewItem.DOM.descriptions, {
+          ease: 'power2',
+          opacity: 0
+      }, 'start')
+      .to(previewItem.DOM.descriptions, {
+          yPercent: 15
+      }, 'start')
+      .to(previewItem.DOM.slideTexts, {
+          yPercent: 100
+      }, 'start')
+      .to(previewItem.DOM.img, {
+          xPercent: -100,
+      }, 'start')
+      .to(previewItem.DOM.imgWrap, {
+          xPercent: 100,
+          opacity: 1
+      }, 'start')
+      .to(contentOverlayInner, {
+          ease: 'power2',
+          xPercent: 100,
+      }, 'start+=0.4')
+  });
+  
+  }
+  values();
+
+
 
 
 function init() {
@@ -2233,273 +2507,7 @@ gsap.to("#title-shift-pin2", {
 
 //// START VALUES SECTION ////
 
-function values() {
-/**
- * Class representing a content item element (.content__item)
- */
-class ContentItem {
-	// DOM elements
-	DOM = {
-		// main element (.content__item)
-		el: null,
-        // title (.content__item-title)
-        title: null,
-        // title inner (.content__item-title > .oh__inner)
-        titleInner: null,
-        // imgWrap (.content__item-imgwrap)
-        imgWrap : null,
-        // image (.content__item-img)
-        img : null,
-        // caption (.content__item-caption)
-        caption: null,
-	};
-	
-	/**
-	 * Constructor.
-	 * @param {Element} DOM_el - main element (.content__item)
-     * @param {PreviewItem} previewItemInstance - PreviewItem (.preview__item)
-	 */
-	constructor(DOM_el, previewItemInstance) {
-        this.previewItem = previewItemInstance;
-		this.DOM.el = DOM_el;
-        this.DOM.title = this.DOM.el.querySelector('.content__item-title');
-        this.DOM.titleInner = this.DOM.title.querySelector('.oh__inner');
-        this.DOM.imgWrap = this.DOM.el.querySelector('.content__item-img-wrap');
-        this.DOM.img = this.DOM.imgWrap.querySelector('.content__item-img');
-        this.DOM.caption = this.DOM.el.querySelector('.content__item-caption');
-	}
-}
-
-
-/**
- * Class representing a preview item element (.preview__item)
- */
-class PreviewItem {
-	// DOM elements
-	DOM = {
-		// main element (.preview__item)
-		el: null,
-        // image outer (.preview__item-img-outer)
-        imgOuter: null,
-        // imgWrap (.preview__item-img-wrap)
-        imgWrap : null,
-        // image (.content__item-img)
-        img : null,
-        // texts that slide in/out (.oh__inner)
-        slideTexts: null,
-        // description elements (.preview__item-box-desc)
-        descriptions: null,
-        // title (.preview__item-title)
-        title: null,
-        // right and left text boxes (.preview__item-box)
-        boxes: null,
-	};
-	
-	/**
-	 * Constructor.
-	 * @param {Element} DOM_el - main element (.preview__item)
-	 */
-	constructor(DOM_el) {
-		this.DOM.el = DOM_el;
-        this.DOM.imgOuter = this.DOM.el.querySelector('.preview__item-img-outer');
-        this.DOM.imgWrap = this.DOM.el.querySelector('.preview__item-img-wrap');
-        this.DOM.img = this.DOM.el.querySelector('.preview__item-img');
-        this.DOM.slideTexts = this.DOM.el.querySelectorAll('.oh__inner');
-        this.DOM.descriptions = this.DOM.el.querySelectorAll('.preview__item-box-desc');
-        this.DOM.title = this.DOM.el.querySelector('.preview__item-title');
-        this.DOM.boxes = this.DOM.el.querySelectorAll('.preview__item-box');
-	}
-}
-
-// Body 
-const bodyEl = document.body;
-
-// Content overlay
-const contentOverlayInner = document.querySelector('.content__overlay > .overlay__inner');
-gsap.set(contentOverlayInner, {
-    xPercent: -100
-})
-// Preview Items
-const previewItems = [];
-[...document.querySelectorAll('.preview__item')].forEach(previewItem => {
-    previewItems.push(new PreviewItem(previewItem));
-});
-
-// Content Items
-const contentItems = [];
-[...document.querySelectorAll('.content__item')].forEach((contentItem, pos) => {
-    contentItems.push(new ContentItem(contentItem, previewItems[pos]));
-});
-
-// current element
-let current = -1;
-
-// check if currently animating
-let isAnimating = false;
-
-// Back control
-const backCtrl = document.querySelector('.preview__back');
-
-// Events
-for (const [pos, contentItem] of contentItems.entries()) {
-    
-    // click on a content item
-    contentItem.DOM.imgWrap.addEventListener('click', () => {
-        if ( isAnimating ) return;
-        isAnimating = true;
-
-        current = pos;
-
-        const previewItem = previewItems[pos];
-        
-        gsap.timeline({
-            defaults: {
-                duration: 1.1,
-                ease: 'expo',
-            },
-            onStart: () => {
-                bodyEl.classList.add('preview-open');
-                gsap.set(previewItem.DOM.img, {xPercent: 100});
-                gsap.set(previewItem.DOM.imgWrap, {xPercent: -102, opacity: 0});
-
-                gsap.set(previewItem.DOM.slideTexts, {yPercent: 100});
-                gsap.set(previewItem.DOM.descriptions, {yPercent: 15, opacity: 0});
-                
-                gsap.set(backCtrl, {x: '+=15%', opacity: 0});
-
-                previewItem.DOM.el.classList.add('preview__item--current');
-            },
-            onComplete: () => isAnimating = false
-        })
-        .addLabel('start', 0)
-        .addLabel('preview', 'start+=0.3')
-        .to(contentOverlayInner, {
-            ease: 'power2',
-            startAt: {xPercent: -100},
-            xPercent: 0
-        }, 'start')
-        .to([previewItem.DOM.img, previewItem.DOM.imgWrap], {
-            xPercent: 0,
-        }, 'preview')
-        .to(previewItem.DOM.imgWrap, {
-            opacity: 1,
-        }, 'preview')
-        .to(previewItem.DOM.slideTexts, {
-            yPercent: 0,
-            stagger: 0.05,
-        }, 'preview')
-        .to(previewItem.DOM.descriptions, {
-            ease: 'power2',
-            opacity: 1,
-            stagger: 0.05,
-        }, 'preview')
-        .to(previewItem.DOM.descriptions, {
-            yPercent: 0,
-            stagger: 0.05,
-        }, 'preview')
-        .to(backCtrl, {
-            ease: 'power2',
-            opacity: 1,
-            x: '-=15%'
-        }, 'preview');
-    });
-    
-    // mouseenter / mouseleave effect
-    contentItem.DOM.imgWrap.addEventListener('mouseenter', () => {
-        gsap.timeline({
-            defaults: {
-                duration: 0.6,
-                ease: 'expo'
-            }
-        })
-        .addLabel('start', 0)
-        .set(contentItem.DOM.titleInner, {transformOrigin: '0% 50%'}, 'start')
-        .to(contentItem.DOM.titleInner, {
-            startAt: {filter: 'blur(0px)'},
-            duration: 0.2,
-            ease: 'power1.in',
-            yPercent: -100,
-            rotation: -4,
-            filter: 'blur(6px)'
-        }, 'start')
-        .to(contentItem.DOM.titleInner, {
-            startAt: {yPercent: 100, rotation: 4, filter: 'blur(6px)'},
-            yPercent: 0,
-            rotation: 0,
-            filter: 'blur(0px)'
-        }, 'start+=0.2')
-        .to(contentItem.DOM.imgWrap, {
-            scale: 0.95
-        }, 'start')
-        .to(contentItem.DOM.img, {
-            scale: 1.2
-        }, 'start')
-    });
-
-    contentItem.DOM.imgWrap.addEventListener('mouseleave', () => {
-        gsap.timeline({
-            defaults: {
-                duration: 0.8,
-                ease: 'power4'
-            }
-        })
-        .addLabel('start', 0)
-        .to([contentItem.DOM.imgWrap, contentItem.DOM.img], {
-            scale: 1,
-            //rotation: 0
-        }, 'start');
-    });
-
-}
-
-// Back to grid
-backCtrl.addEventListener('click', () => {
-    if ( isAnimating ) return;
-    isAnimating = true;
-
-    const previewItem = previewItems[current];
-    
-    gsap.timeline({
-        defaults: {
-            duration: 1,
-            ease: 'power4',
-        },
-        onComplete: () => {
-            previewItem.DOM.el.classList.remove('preview__item--current');
-            bodyEl.classList.remove('preview-open');
-            isAnimating = false;
-        }
-    })
-    .addLabel('start', 0)
-    .to(backCtrl, {
-        ease: 'power2',
-        opacity: 0
-    }, 'start')
-    .to(previewItem.DOM.descriptions, {
-        ease: 'power2',
-        opacity: 0
-    }, 'start')
-    .to(previewItem.DOM.descriptions, {
-        yPercent: 15
-    }, 'start')
-    .to(previewItem.DOM.slideTexts, {
-        yPercent: 100
-    }, 'start')
-    .to(previewItem.DOM.img, {
-        xPercent: -100,
-    }, 'start')
-    .to(previewItem.DOM.imgWrap, {
-        xPercent: 100,
-        opacity: 1
-    }, 'start')
-    .to(contentOverlayInner, {
-        ease: 'power2',
-        xPercent: 100,
-    }, 'start+=0.4')
-});
-
-}
-values();
+/* IMPORTANT!!!!!!!!!!!!!!!!!!!!!!!! MOVED TO TOP-TIER!
 
 //// END VALUES SECTION ////
 
@@ -6923,7 +6931,7 @@ function init() {
 
   scene = new THREE.Scene();
 
-  var geometry = new THREE.PlaneBufferGeometry(2, 2);
+  var geometry = new THREE.PlaneGeometry(2, 2);
 
   uniforms = {
     u_time: {

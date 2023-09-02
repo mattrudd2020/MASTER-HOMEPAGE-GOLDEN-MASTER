@@ -2,23 +2,17 @@
 
 <head>
   <meta charset="utf-8" />
-  <title>How to create page transitions tutorial - Barba.js</title>
+  <title>How! to create page transitions tutorial - Barba.js</title>
   <meta name="description" content="" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<link href="css/style.css" rel="stylesheet">
-<link href="css/transition.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/transition.css" rel="stylesheet">
 
 </head>
 
+
 <body data-barba="wrapper">
-<button class="cursors main-cursor"></button>
-<button class="cursors video-cursor"><span class="cursor-text-play">PLAY</span></button>
-<!--<button class="cursor-video-exit"><span class="cursor-text-exit">EXIT</span></button>-->
-<button class="cursor-video-exit">EXIT</button>
-<button class="cursor-read-more">READ MORE</button>
-
-
 
 
   <!-- ELEMENT ON LOAD - WORK OUT BARBA!  
@@ -28,6 +22,8 @@
       <path class="overlay-nav_path" vector-effect="non-scaling-stroke" d="M 0 0 V 0 Q 50 0 100 0 V 0 z"></path>
 </svg>
 </nav> -->
+
+
 
   <div class="transition clip"></div>
 
@@ -41,19 +37,45 @@
     <div class="lightbox__top lightbox-bar"></div>
     <div class="lightbox__content">
       <video id="video" width="100%" height="100%" controls playsinline>
-        <source
-          src="https://media-files.vidstack.io/360p.mp4"
-          type="video/mp4"
-        />
+        <source src="video/SHOWREEL FINAL!.mp4" type="video/mp4" />
       </video>
     </div>
     <div class="lightbox__bottom lightbox-bar"></div>
   </div>
 
+	<div class="home-menu_main">
+		<div class="home-frame__button">
+      <a class="menu_lottie" href="">
+        <div class="menu_logo_box"> <lottie-player class="mrc-logo"
+            src="Lottie/MRC+loader+logo_w_classes.json"
+            background="" disableShadowDOM speed="1" autoplay></lottie-player>
+        </div>
+      </a>
+      <div class="menu_blurb_box"><span>Matt Rudd Creative</span></div>
+			<button class="unbutton button-menu" aria-label="Open menu">
+				<a>Menu</a>
+			</button>
+		</div>
+		<div class="home-frame__heading">
+			<span class="home-frame__heading-main"></span>
+		</div>
+	</div>
+
+	<div class="schedule_hover-container cursor-transparent">
+    <button class="schedule_button button--calypso hover-text" data-cal-link="mr-matt-rudd/30min" data-cal-config='{"layout":"month_view"}'><span>Schedule a call</span>
+      <span class="second_schedule-span">Share your vision</span>
+    </button>
+  </div>
+  
+  <!-- <button class="calendar-button" data-cal-link="mr-matt-rudd/30min" data-cal-config='{"layout":"month_view"}'>Share your story</button> -->
+   
+  
+
+
   <div id="smooth-wrapper">
-
-
     <div id="smooth-content">
+
+
       <main data-barba="container" data-barba-namespace="brand-development">
       
         <div class="bd-title-section">
@@ -100,36 +122,273 @@
   
   
         </main>
-    </div>
-    <!--smooth-content end -->
-    </div>
-    <!--smooth-wrapper end -->
-  
-
-    <script src="https://unpkg.com/@barba/core"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
-    <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/ScrollSmoother.min.js"></script>
-    <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
-    <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/SplitText.min.js"></script>
-    <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/Flip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Blotter/0.1.0/blotter.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Blotter/0.1.0/materials/channelSplitMaterial.min.js"></script>
-    <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/Observer.min.js"></script>
-    <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/DrawSVGPlugin.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.2/plyr.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js"></script>
-    <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/CustomEase.min.js"></script>
-    <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/MorphSVGPlugin.min.js"></script>
-    <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/TextPlugin.min.js"></script>
-    <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/ScrollToPlugin.min.js"></script>
-    <script type="module" src="js/main-css-promise.js" defer></script>
-
-
-</body>
-
-    </html>
-  
+      </div>
+      <!--smooth-content end -->
+      
+      </div>
+      <!--smooth-wrapper end -->
+      
+      
+      <svg class="overlay2" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <clipPath id="svgPath">
+        <path class="overlay__path" vector-effect="non-scaling-stroke" d="M 0 100 V 50 Q 50 0 100 50 V 100 z" />
+      </svg>
+      
+      <svg class="home-overlay" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path class="overlay__path" vector-effect="non-scaling-stroke" d="M 0 100 V 100 Q 50 100 100 100 V 100 z" />
+      </svg>
+      
+      <svg class="home-overlay" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <clipPath id="theClipPath2">
+            <path class="overlay__path" vector-effect="non-scaling-stroke" d="M 0 100 V 50 Q 50 0 100 50 V 100 z" />
+          </clipPath>
+        </defs>
+        <g id="clipReveal" clip-path="url(#theClipPath2)">
+          <path d="m51.53,43.76v12.35h-5.27v-4.97l-2.28,1.88-7.55-6.24v-3.02h4.29l3.26,2.7,3.26-2.7h4.29Zm-12.98,8.28c1.16,0,2.1.94,2.1,2.1s-.94,2.1-2.1,2.1-2.1-.94-2.1-2.1.94-2.1,2.1-2.1Zm22.91-5.32c1.16,0,2.1.94,2.1,2.1s-.94,2.1-2.1,2.1-2.1-.94-2.1-2.1.94-2.1,2.1-2.1Zm-3.28,0h-5.26v9.33h5.26v-9.33Z" fill="#1a1a1a" stroke-width="0"/>
+          <rect width="200" height="200" fill="none" stroke-width="0"/>
+        </g>
+      </svg>
+      
+      
+      
+      <div class="home-menu-wrap">
+          
+        <nav class="home-menu">
+            <div class="home-menu__item">
+              <a class="home-menu__item-link">Home</a>
+              <img class="home-menu__item-img" src="img/1.jpg" alt="Some image"/>
+              <div class="home-marquee">
+                <div class="home-marquee__inner" aria-hidden="true">
+                    <span>Home</span>
+                    <span>Home</span>
+                    <span>Home</span>
+                    <span>Home</span>
+                    <span>Home</span>
+                    <span>Home</span>
+                  </div>
+              </div>
+            </div>
+            
+            <div class="home-menu__item">
+              <a class="home-menu__item-link">Showreel</a>
+              <img class="home-menu__item-img" src="img/2.jpg" alt="Some image"/>
+              <div class="home-marquee">
+                <div class="home-marquee__inner" aria-hidden="true">
+                  <span>Showreel</span>
+                  <span>Showreel</span>
+                  <span>Showreel</span>
+                  <span>Showreel</span>
+                </div>
+              </div>
+            </div>
+            <div class="home-menu__item">
+              <a class="home-menu__item-link">Case Studies</a>
+              <img class="home-menu__item-img" src="img/1.jpg" alt="Some image"/>
+              <div class="home-marquee">
+                <div class="home-marquee__inner" aria-hidden="true">
+                  <span>Case Studies</span>
+                  <span>Case Studies</span>
+                  <span>Case Studies</span>
+                  <span>Case Studies</span>
+                </div>
+              </div>
+            </div>
+            <div class="home-menu__item">
+              <a class="home-menu__item-link">About Me</a>
+              <img class="home-menu__item-img" src="img/3.jpg" alt="Some image"/>
+              <div class="home-marquee">
+                <div class="home-marquee__inner" aria-hidden="true">
+                  <span>About Me</span>
+                  <span>About Me</span>
+                  <span>About Me</span>
+                  <span>About Me</span>
+                </div>
+              </div>
+            </div>
+            <div class="home-menu__item">
+              <a class="home-menu__item-link">Contact</a>
+              <img class="home-menu__item-img" src="img/6.jpg" alt="Some image"/>
+              <div class="home-marquee">
+                <div class="home-marquee__inner" aria-hidden="true">
+                  <span>Contact</span>
+                  <span>Contact</span>
+                  <span>Contact</span>
+                  <span>Contact</span>
+                </div>
+              </div>
+            </div>
+          </nav>
+          
+          <nav class="home-menu_main">
+            <div class="home-frame__button closeButton">
+            <button class="unbutton button-close">
+              <a>Close</a>
+            </button>
+            </div>
+          </nav>
+      
+          
+            
+          
+          </div>
+          
+      
+        <div class="follower cursor" id="cursor">
+          <div class="follower__inner dot"></div>
+          <span class="follower__content"></span>
+        </div>
+      
+        <div class="hover-reveal">
+          <div class="hover-reveal__inner">
+            <div class="hover-reveal__img"></div>
+          </div>
+        </div>
+      
+        <div class="content__overlay">
+          <div class="overlay__inner"></div>
+        </div>
+      
+        <div class="preview">
+          <div class="preview__item">
+            <div class="preview__item-img-outer">
+              <div class="preview__item-img-wrap">
+                <div class="preview__item-img" style="background-image: url(img/curiosity.jpg)"></div>
+              </div>
+            </div>
+            <h2 class="preview__item-title oh"><span class="oh__inner">Curiosity</span></h2>
+            <h3 class="preview__item-subtitle oh"><span class="oh__inner">Look beyond the obvious</span></h3>
+            <span class="preview__item-meta oh"><span class="oh__inner">2023</span></span>
+            <div class="preview__item-box preview__item-box--left">
+              <h3 class="preview__item-box-title oh"><span class="oh__inner">Setting</span></h3>
+              <p class="preview__item-box-desc">At the violet hour, when the eyes and back turn upward from the desk, when the
+                human engine waits.</p>
+            </div>
+            <div class="preview__item-box preview__item-box--right">
+              <h3 class="preview__item-box-title oh"><span class="oh__inner">Location</span></h3>
+              <p class="preview__item-box-desc">April is the cruellest month, breeding lilacs out of the dead land, mixing
+                memory and desire, stirring dull roots with spring rain.</p>
+            </div>
+          </div>
+          <div class="preview__item">
+            <div class="preview__item-img-outer">
+              <div class="preview__item-img-wrap">
+                <div class="preview__item-img" style="background-image: url(img/simplicity.jpg)"></div>
+              </div>
+            </div>
+            <h2 class="preview__item-title oh"><span class="oh__inner">Simplicity</span></h2>
+            <h3 class="preview__item-subtitle oh"><span class="oh__inner">Keep it simple, stupid (KISS)</span></h3>
+            <span class="preview__item-meta oh"><span class="oh__inner">2023</span></span>
+            <div class="preview__item-box preview__item-box--left">
+              <h3 class="preview__item-box-title oh"><span class="oh__inner">Setting</span></h3>
+              <p class="preview__item-box-desc">Madame sosostris, famous clairvoyante, had a bad cold, nevertheless is known
+                to be the wisest woman in europe.</p>
+            </div>
+            <div class="preview__item-box preview__item-box--right">
+              <h3 class="preview__item-box-title oh"><span class="oh__inner">Location</span></h3>
+              <p class="preview__item-box-desc">Winter kept us warm, covering earth in forgetful snow, feeding a little life
+                with dried tubers.</p>
+            </div>
+          </div>
+          <div class="preview__item">
+            <div class="preview__item-img-outer">
+              <div class="preview__item-img-wrap">
+                <div class="preview__item-img" style="background-image: url(img/growth1b.jpg)"></div>
+              </div>
+            </div>
+            <h2 class="preview__item-title oh"><span class="oh__inner">Growth</span></h2>
+            <h3 class="preview__item-subtitle oh"><span class="oh__inner">Nocturne</span></h3>
+            <span class="preview__item-meta oh"><span class="oh__inner">2023</span></span>
+            <div class="preview__item-box preview__item-box--left">
+              <h3 class="preview__item-box-title oh"><span class="oh__inner">Setting</span></h3>
+              <p class="preview__item-box-desc">The chair she sat in, like a burnished throne, glowed on the marble, where the
+                glass.</p>
+            </div>
+            <div class="preview__item-box preview__item-box--right">
+              <h3 class="preview__item-box-title oh"><span class="oh__inner">Location</span></h3>
+              <p class="preview__item-box-desc">Doubled the flames of sevenbranched candelabra reflecting light upon the table
+                as the glitter of her jewels rose to meet it.</p>
+            </div>
+          </div>
+          <!-- <div class="preview__item">
+              <div class="preview__item-img-outer">
+                <div class="preview__item-img-wrap">
+                  <div class="preview__item-img" style="background-image: url(img/4.avif)"></div>
+                </div>
+              </div>
+              <h2 class="preview__item-title oh"><span class="oh__inner">Lily</span></h2>
+              <h3 class="preview__item-subtitle oh"><span class="oh__inner">Outsider</span></h3>
+              <span class="preview__item-meta oh"><span class="oh__inner">2021</span></span>
+              <div class="preview__item-box preview__item-box--left">
+                <h3 class="preview__item-box-title oh"><span class="oh__inner">Setting</span></h3>
+                <p class="preview__item-box-desc">From satin cases poured in rich profusion; in vials of ivory and coloured glass.</p>
+              </div>
+              <div class="preview__item-box preview__item-box--right">
+                <h3 class="preview__item-box-title oh"><span class="oh__inner">Location</span></h3>
+                <p class="preview__item-box-desc">Huge sea-wood fed with copper burned green and orange, framed by the coloured stone, in which sad light a carvéd dolphin swam.</p>
+              </div>
+            </div> -->
+          <button class="unbutton2 preview__back" aria-label="Back to content">
+            <svg width="200px" height="36px" viewBox="0 0 50 9">
+              <path vector-effect="non-scaling-stroke" d="m0 4.5 5-3m-5 3 5 3m45-3h-77"></path>
+            </svg>
+          </button>
+        </div>
+      
+      
+      
+        <script async src="https://ga.jspm.io/npm:es-module-shims@1.5.1/dist/es-module-shims.js" crossorigin="anonymous"></script>
+        <script type="importmap">
+          {
+            "imports": {
+              "three": "https://unpkg.com/three@0.155.0/build/three.module.js",
+              "three/addons/": "https://unpkg.com/three@0.155.0/examples/jsm/"
+            }
+          }
+        </script>
+      
+      
+      <!-- Cal element-click embed code begins -->
+      <script type="text/javascript">
+        (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", {origin:"https://cal.com"});
+      
+        
+        // Important: Please add following attributes to the element you want to open Cal on click
+        // `data-cal-link="mr-matt-rudd/30min"`
+        // `data-cal-config='{"layout":"month_view"}'`
+        
+        Cal("ui", {"styles":{"branding":{"brandColor":"#000000"}},"hideEventTypeDetails":false,"layout":"month_view"});
+        </script>
+        <!-- Cal element-click embed code ends -->
+      
+      
+        
+      
+        <script src="https://unpkg.com/@barba/core"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>
+        <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/ScrollSmoother.min.js"></script>
+        <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/ScrollTrigger.min.js"></script>
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
+        <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/SplitText.min.js"></script>
+        <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/Flip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Blotter/0.1.0/blotter.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Blotter/0.1.0/materials/channelSplitMaterial.min.js"></script>
+        <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/Observer.min.js"></script>
+        <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/DrawSVGPlugin.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.9.6/lottie.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.2/plyr.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/5.0.0/imagesloaded.pkgd.min.js"></script>
+        <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/CustomEase.min.js"></script>
+        <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/MorphSVGPlugin.min.js"></script>
+        <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/TextPlugin.min.js"></script>
+        <script src="https://mrc-website-assets.s3.eu-west-2.amazonaws.com/GSAP/ScrollToPlugin.min.js"></script>
+        <script type="module" src="js/main-css-promise.js" defer></script>
+        <!-- <script type="module" data-main="js/main.js" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" defer></script> -->
+      
+      
+      </body>
+      
+      </html>
